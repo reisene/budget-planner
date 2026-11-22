@@ -57,6 +57,7 @@
   },
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "@neon/auth": "^0.8.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.1.0",
     "bootstrap": "^5.3.9",

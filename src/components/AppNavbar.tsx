@@ -3,6 +3,7 @@
 import { JetBrains_Mono } from 'next/font/google';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import type { ReactNode } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { BsEnvelope, BsHouse, BsInfoCircle } from 'react-icons/bs';
 
@@ -17,7 +18,11 @@ const navLinks = [
   { href: '/about', label: 'About', icon: <BsInfoCircle /> },
   { href: '/contact', label: 'Contact', icon: <BsEnvelope /> },
 ];
-export default function AppNavbar() {
+export default function AppNavbar({
+  authButtons,
+}: {
+  authButtons?: ReactNode;
+}) {
   const pathname = usePathname();
   return (
     <Navbar
@@ -50,6 +55,7 @@ export default function AppNavbar() {
               </Nav.Item>
             ))}
           </Nav>
+          {authButtons}
         </Navbar.Collapse>
       </Container>
     </Navbar>

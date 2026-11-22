@@ -1,4 +1,5 @@
 import AppNavbar from '@/components/AppNavbar';
+import AuthButtons from '@/components/AuthButtons';
 import Footer from '@/components/Footer';
 import pkg from '@/package.json';
 import { Analytics } from '@vercel/analytics/next';
@@ -72,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang='en' data-bs-theme='dark'>
       <body className={'min-vh-100 d-flex flex-column'}>
-        <AppNavbar />
+        <AppNavbar authButtons={<AuthButtons />} />
         <main className='py-4 flex-grow-1'>{children}</main>
         <Analytics />
         <SpeedInsights />
