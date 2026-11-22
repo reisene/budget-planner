@@ -1,28 +1,9 @@
-import { compile } from '@mdx-js/mdx';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'node:url';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkGfm from 'remark-gfm';
 import { coverageConfigDefaults, defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'test-mdx',
-      async transform(source, id) {
-        if (!id.endsWith('.mdx')) return;
-        return {
-          code: String(
-            await compile(source, {
-              remarkPlugins: [remarkFrontmatter, remarkGfm],
-            }),
-          ),
-          map: null,
-        };
-      },
-    },
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('.', import.meta.url)),
