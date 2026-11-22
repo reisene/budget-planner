@@ -56,9 +56,10 @@ export const metadata: Metadata = {
     siteName: 'Budget Planner',
     images: [
       {
-        url: '/logo.svg',
-        width: 512,
-        height: 512,
+        url: '/og-image.png',
+        width: 1200,
+        height: 628,
+        alt: 'Budget Planner',
       },
     ],
     locale: 'en_US',
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Budget Planner',
     description: 'A simple budget planner app.',
-    images: ['/logo.svg'],
+    images: ['/og-image.png'],
   },
 };
 
