@@ -1,4 +1,5 @@
 import pkg from '@/package.json';
+import type { Route } from 'next';
 import Link from 'next/link';
 import { Col, Container, Row } from 'react-bootstrap';
 import { BsGithub } from 'react-icons/bs';
@@ -24,7 +25,7 @@ export default function Footer() {
           </Col>
           <Col md={4} className='text-md-end'>
             <Link
-              href={pkg.repository.url}
+              href={pkg.repository.url as Route}
               target='_blank'
               rel='noopener noreferrer'
             >
