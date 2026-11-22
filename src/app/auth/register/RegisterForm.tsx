@@ -14,7 +14,7 @@ export default function RegisterForm() {
       <Form action={action} className='mb-4'>
         {state?.error && <Alert variant='danger'>{state.error}</Alert>}
         <Form.Group className='mb-3' controlId='register-name'>
-          <Form.Label>Imię</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control type='text' name='name' autoComplete='name' required />
         </Form.Group>
         <Form.Group className='mb-3' controlId='register-email'>
@@ -27,7 +27,7 @@ export default function RegisterForm() {
           />
         </Form.Group>
         <Form.Group className='mb-3' controlId='register-password'>
-          <Form.Label>Hasło</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
             name='password'
@@ -37,19 +37,19 @@ export default function RegisterForm() {
           />
         </Form.Group>
         <Button type='submit' className='w-100' disabled={pending}>
-          Zarejestruj się
+          Register
         </Button>
       </Form>
 
       <Form action={signInWithGoogle} className='mb-4'>
         <Button type='submit' variant='outline-light' className='w-100'>
           <FcGoogle aria-hidden='true' className='me-2' size={20} />
-          Zarejestruj się z Google
+          Register with Google
         </Button>
       </Form>
 
       <p className='text-center mb-0'>
-        Masz już konto? <Link href='/auth/login'>Zaloguj się</Link>
+        Already have an account? <Link href='/auth/login'>Sign in</Link>
       </p>
     </>
   );

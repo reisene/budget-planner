@@ -6,7 +6,14 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import type { Metadata, Viewport } from 'next';
+import { Montserrat } from 'next/font/google';
 import React from 'react';
+
+const montserrat = Montserrat({
+  subsets: ['latin-ext'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -72,7 +79,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' data-bs-theme='dark'>
-      <body className={'min-vh-100 d-flex flex-column'}>
+      <body className={`min-vh-100 d-flex flex-column ${montserrat.className}`}>
         <AppNavbar authButtons={<AuthButtons />} />
         <main className='py-4 flex-grow-1'>{children}</main>
         <Analytics />

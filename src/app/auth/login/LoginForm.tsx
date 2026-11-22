@@ -36,7 +36,7 @@ export default function LoginForm() {
           />
         </Form.Group>
         <Form.Group className='mb-3' controlId='login-password'>
-          <Form.Label>Hasło</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
             name='password'
@@ -45,14 +45,14 @@ export default function LoginForm() {
           />
         </Form.Group>
         <Button type='submit' className='w-100' disabled={loginPending}>
-          Zaloguj się
+          Sign in
         </Button>
       </Form>
 
       <Form action={signInWithGoogle} className='mb-4'>
         <Button type='submit' variant='outline-light' className='w-100'>
           <FcGoogle aria-hidden='true' className='me-2' size={20} />
-          Kontynuuj z Google
+          Continue with Google
         </Button>
       </Form>
 
@@ -64,7 +64,7 @@ export default function LoginForm() {
           <Alert variant='success'>{magicState.success}</Alert>
         )}
         <Form.Group className='mb-3' controlId='magic-email'>
-          <Form.Label>Zaloguj się linkiem na email</Form.Label>
+          <Form.Label>Sign in with an email link</Form.Label>
           <Form.Control
             type='email'
             name='email'
@@ -78,12 +78,12 @@ export default function LoginForm() {
           className='w-100'
           disabled={magicPending}
         >
-          Wyślij magic link
+          Send magic link
         </Button>
       </Form>
 
       <p className='text-center mb-0'>
-        Nie masz konta? <Link href='/auth/register'>Zarejestruj się</Link>
+        Don&apos;t have an account? <Link href='/auth/register'>Register</Link>
       </p>
     </>
   );

@@ -8,7 +8,7 @@ export default async function AuthButtons() {
 
   if (session?.user) {
     return (
-      <div className='d-flex gap-2'>
+      <div className='d-flex gap-2 justify-content-center justify-content-lg-start'>
         <AccountButton name={session.user.name || session.user.email} />
         <form action={signOut}>
           <Button type='submit' variant='primary'>
@@ -20,7 +20,7 @@ export default async function AuthButtons() {
   }
 
   return (
-    <div className='d-flex gap-2'>
+    <div className='d-flex gap-2 justify-content-center justify-content-lg-start'>
       <Button href='/auth/login' variant='light'>
         Login
       </Button>
