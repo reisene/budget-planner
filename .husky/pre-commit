@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# pre-commit — Lint/inspect staged changes before a commit is created.
+# When: On `git commit`, before the message editor opens.
+# Args: None. Operates on the staged (index) contents.
+# Exit: Non-zero aborts the commit.
+
+npx lint-staged
+npx tsc --noEmit
