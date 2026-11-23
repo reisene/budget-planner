@@ -12,7 +12,7 @@ export default defineConfig([
     'next-env.d.ts',
     'node_modules/**',
     '.agents/**',
-    'generated/**',
+    '*/generated/**',
     'coverage/**',
   ]),
 
