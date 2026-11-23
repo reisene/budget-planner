@@ -4,16 +4,34 @@ import { auth } from '@/lib/auth/server';
 import type { Route } from 'next';
 import { redirect } from 'next/navigation';
 
+type RegisterState = { error?: string; verifyEmail?: string } | null;
+
+type EmailOtpApi = {
+  emailOtp: {
+    verifyEmail: (body: {
+      email: string;
+      otp: string;
+    }) => Promise<{ error: { message?: string } | null }>;
+    sendVerificationOtp: (body: {
+      email: string;
+      type: 'email-verification';
+    }) => Promise<{ error: { message?: string } | null }>;
+  };
+};
+
+// The typed server API does not expose emailOtp, but the endpoints exist.
+const emailOtpApi = () => auth as unknown as EmailOtpApi;
+
 export async function signUpWithEmail(
-  _prevState: { error: string } | null,
+  _prevState: RegisterState,
   formData: FormData,
-) {
+): Promise<RegisterState> {
   const email = formData.get('email') as string;
   if (!email) {
     return { error: 'Email is required' };
   }
 
-  const { error } = await auth.signUp.email({
+  const { data, error } = await auth.signUp.email({
     email,
     name: formData.get('name') as string,
     password: formData.get('password') as string,
@@ -26,7 +44,45 @@ export async function signUpWithEmail(
     };
   }
 
+  // No session means that email verification is required.
+  if (!data?.token) {
+    return { verifyEmail: email };
+  }
+
   redirect('/' as Route);
+}
+
+export async function verifyEmailCode(
+  _prevState: RegisterState,
+  formData: FormData,
+): Promise<RegisterState> {
+  const email = formData.get('email') as string;
+  const otp = (formData.get('otp') as string)?.trim();
+  if (!otp) {
+    return { verifyEmail: email, error: 'Verification code is required' };
+  }
+
+  const { error } = await emailOtpApi().emailOtp.verifyEmail({ email, otp });
+
+  if (error) {
+    return {
+      verifyEmail: email,
+      error: error.message || 'Invalid or expired code. Please try again.',
+    };
+  }
+
+  redirect('/' as Route);
+}
+
+export async function resendVerificationCode(email: string) {
+  const { error } = await emailOtpApi().emailOtp.sendVerificationOtp({
+    email,
+    type: 'email-verification',
+  });
+
+  return error
+    ? { error: error.message || 'Failed to resend the code.' }
+    : { success: 'A new code has been sent.' };
 }
 
 export async function signInWithEmail(

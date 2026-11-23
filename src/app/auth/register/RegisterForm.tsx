@@ -1,13 +1,74 @@
 'use client';
 
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useActionState, useState, useTransition } from 'react';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { FcGoogle } from 'react-icons/fc';
-import { signInWithGoogle, signUpWithEmail } from '../actions';
+import {
+  resendVerificationCode,
+  signInWithGoogle,
+  signUpWithEmail,
+  verifyEmailCode,
+} from '../actions';
+
+function VerifyForm({ email }: { email: string }) {
+  const [state, action, pending] = useActionState(verifyEmailCode, null);
+  const [message, setMessage] = useState<{
+    error?: string;
+    success?: string;
+  } | null>(null);
+  const [resending, startResend] = useTransition();
+
+  const feedback = state?.error ? { error: state.error } : message;
+
+  return (
+    <Form action={action}>
+      <p>
+        We sent a verification code to <strong>{email}</strong>. Enter it below
+        to activate your account.
+      </p>
+      {feedback?.error && <Alert variant='danger'>{feedback.error}</Alert>}
+      {message?.success && !state?.error && (
+        <Alert variant='success'>{message.success}</Alert>
+      )}
+      <input type='hidden' name='email' value={email} />
+      <Form.Group className='mb-3' controlId='verify-otp'>
+        <Form.Label>Verification code</Form.Label>
+        <Form.Control
+          type='text'
+          name='otp'
+          inputMode='numeric'
+          autoComplete='one-time-code'
+          maxLength={6}
+          required
+        />
+      </Form.Group>
+      <Button type='submit' className='w-100 mb-2' disabled={pending}>
+        Verify email
+      </Button>
+      <Button
+        type='button'
+        variant='outline-light'
+        className='w-100'
+        disabled={resending}
+        onClick={() =>
+          startResend(async () => {
+            setMessage(await resendVerificationCode(email));
+          })
+        }
+      >
+        Resend code
+      </Button>
+    </Form>
+  );
+}
 
 export default function RegisterForm() {
   const [state, action, pending] = useActionState(signUpWithEmail, null);
+
+  if (state?.verifyEmail) {
+    return <VerifyForm email={state.verifyEmail} />;
+  }
 
   return (
     <>
