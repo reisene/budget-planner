@@ -34,6 +34,7 @@ export default function AppNavbar({
     <Navbar
       expand={'lg'}
       className={`bg-body-tertiary ${jetBrainsMono.className}`}
+      sticky={'top'}
     >
       <Container>
         <Navbar.Brand href='/' className='d-flex align-items-center'>
