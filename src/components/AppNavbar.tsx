@@ -5,7 +5,12 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { BsEnvelope, BsHouse, BsInfoCircle } from 'react-icons/bs';
+import {
+  BsCreditCard,
+  BsEnvelope,
+  BsHouse,
+  BsInfoCircle,
+} from 'react-icons/bs';
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin-ext'],
@@ -17,6 +22,7 @@ const navLinks = [
   { href: '/', label: 'Home', icon: <BsHouse /> },
   { href: '/about', label: 'About', icon: <BsInfoCircle /> },
   { href: '/contact', label: 'Contact', icon: <BsEnvelope /> },
+  { href: '/pricing', label: 'Pricing', icon: <BsCreditCard /> },
 ];
 export default function AppNavbar({
   authButtons,
@@ -28,6 +34,7 @@ export default function AppNavbar({
     <Navbar
       expand={'lg'}
       className={`bg-body-tertiary ${jetBrainsMono.className}`}
+      sticky={'top'}
     >
       <Container>
         <Navbar.Brand href='/' className='d-flex align-items-center'>
