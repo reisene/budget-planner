@@ -6,7 +6,7 @@ For more information and possibilities, view https://vercel.com/docs/project-con
 import type { VercelConfig } from '@vercel/config/v1';
 
 export const config: VercelConfig = {
-  regions: ['fra1'],
+  regions: ['fra1', 'arn1'],
   cleanUrls: true,
   trailingSlash: false,
   framework: 'nextjs',
