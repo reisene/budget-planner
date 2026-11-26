@@ -1,6 +1,6 @@
 {
   "git": {
-    "requireBranch": ["develop", "release/*"],
+    "requireBranch": ["develop", "release/*", "hotfix/*"],
     "requireCleanWorkingDir": true,
     "requireUpstream": false,
     "commit": true,
