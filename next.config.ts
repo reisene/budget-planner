@@ -1,4 +1,3 @@
-import { withBotId } from 'botid/next/config';
 import type { NextConfig } from 'next';
 
 const securityHeaders = [
@@ -33,4 +32,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withBotId(nextConfig);
+export default nextConfig;
