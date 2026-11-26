@@ -8,6 +8,7 @@ import {
 } from '@/lib/email';
 import { checkRateLimit } from '@/lib/rateLimit';
 import { logServerError } from '@/lib/serverLogger';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 import { checkBotId } from 'botid/server';
 
 export type ContactState = { ok: boolean; message: string } | null;
@@ -31,6 +32,13 @@ export async function submitContactForm(
   } catch (error) {
     logServerError('contact.botid', error);
     return { ok: false, message: 'Verification failed. Please try again.' };
+  }
+
+  if (!(await verifyTurnstileToken(formData, 'contact'))) {
+    return {
+      ok: false,
+      message: 'Human verification failed. Please try again.',
+    };
   }
 
   const userId = await getCurrentUserId();

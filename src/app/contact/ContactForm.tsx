@@ -1,5 +1,6 @@
 'use client';
 
+import TurnstileWidget from '@/components/TurnstileWidget';
 import { useActionState, useEffect, useRef, useState } from 'react';
 import { Alert, Button, Form, Spinner } from 'react-bootstrap';
 import { BsCheckCircleFill, BsExclamationTriangleFill } from 'react-icons/bs';
@@ -159,6 +160,8 @@ function ContactFormContent({
           <span>{state.message}</span>
         </Alert>
       )}
+
+      <TurnstileWidget action='contact' resetSignal={state} />
 
       <Button type='submit' aria-disabled={pending}>
         {pending ? (
