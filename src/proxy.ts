@@ -7,5 +7,10 @@ export default auth.middleware({
 
 export const config = {
   // Protected routes requiring authentication
-  matcher: ['/account/:path*', '/admin/:path', '/auth/callback'],
+  matcher: [
+    '/account/:path*',
+    '/admin/:path*',
+    '/auth/callback',
+    '/dashboard/:path*',
+  ],
 };

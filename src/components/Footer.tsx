@@ -28,8 +28,10 @@ export default function Footer() {
               href={pkg.repository.url as Route}
               target='_blank'
               rel='noopener noreferrer'
+              className='text-reset text-decoration-none'
+              aria-label='GitHub repository (opens in a new tab)'
             >
-              <BsGithub />
+              <BsGithub aria-hidden='true' />
             </Link>
           </Col>
         </Row>
