@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1](https://github.com/reisene/budget-planner/compare/1.2.0...1.2.1) (2026-11-26)
+
+### Features
+
+- add Sentry error monitoring ([52e2aac](https://github.com/reisene/budget-planner/commit/52e2aac46141a434bc584393d5051ecf8ebccc8c))
+
 ## 1.2.0 (2026-11-26)
 
 ### Features
