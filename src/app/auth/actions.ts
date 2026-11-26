@@ -105,7 +105,6 @@ export async function signInWithEmail(
 
 export async function signOut() {
   await auth.signOut();
-  redirect('/' as Route);
 }
 
 export async function signInWithGoogle() {

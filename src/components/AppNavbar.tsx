@@ -11,6 +11,7 @@ import {
   BsHouse,
   BsInfoCircle,
 } from 'react-icons/bs';
+import { MdOutlineDashboard } from 'react-icons/md';
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin-ext'],
@@ -20,6 +21,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 const navLinks = [
   { href: '/', label: 'Home', icon: <BsHouse /> },
+  { href: '/dashboard', label: 'Dashboard', icon: <MdOutlineDashboard /> },
   { href: '/about', label: 'About', icon: <BsInfoCircle /> },
   { href: '/contact', label: 'Contact', icon: <BsEnvelope /> },
   { href: '/pricing', label: 'Pricing', icon: <BsCreditCard /> },
