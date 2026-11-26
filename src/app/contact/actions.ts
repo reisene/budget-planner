@@ -9,7 +9,6 @@ import {
 import { checkRateLimit } from '@/lib/rateLimit';
 import { logServerError } from '@/lib/serverLogger';
 import { verifyTurnstileToken } from '@/lib/turnstile';
-import { checkBotId } from 'botid/server';
 
 export type ContactState = { ok: boolean; message: string } | null;
 
@@ -22,18 +21,6 @@ export async function submitContactForm(
   _prev: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  try {
-    const verification = await checkBotId({
-      advancedOptions: { checkLevel: 'basic' },
-    });
-    if (verification.isBot) {
-      return { ok: false, message: 'Request blocked. Please try again later.' };
-    }
-  } catch (error) {
-    logServerError('contact.botid', error);
-    return { ok: false, message: 'Verification failed. Please try again.' };
-  }
-
   if (!(await verifyTurnstileToken(formData, 'contact'))) {
     return {
       ok: false,
