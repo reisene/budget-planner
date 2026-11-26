@@ -81,8 +81,17 @@ export default function RootLayout({
   return (
     <html lang='en' data-bs-theme='dark'>
       <body className={`min-vh-100 d-flex flex-column ${montserrat.className}`}>
+        <a
+          href='#main-content'
+          className='visually-hidden-focusable position-absolute m-2 p-2 bg-body'
+          style={{ zIndex: 2000 }}
+        >
+          Skip to main content
+        </a>
         <AppNavbar authButtons={<AuthButtons />} />
-        <main className='py-4 flex-grow-1'>{children}</main>
+        <main id='main-content' tabIndex={-1} className='py-4 flex-grow-1'>
+          {children}
+        </main>
         <Analytics />
         <SpeedInsights />
         <Footer />
