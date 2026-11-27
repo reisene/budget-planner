@@ -79,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' data-bs-theme='dark'>
+    <html lang='en' data-bs-theme='dark' data-scroll-behavior={'smooth'}>
       <body className={`min-vh-100 d-flex flex-column ${montserrat.className}`}>
         <a
           href='#main-content'
