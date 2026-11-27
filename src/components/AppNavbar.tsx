@@ -1,5 +1,6 @@
 'use client';
 
+import { authClient } from '@/lib/auth/client';
 import { JetBrains_Mono } from 'next/font/google';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -21,7 +22,12 @@ const jetBrainsMono = JetBrains_Mono({
 
 const navLinks = [
   { href: '/', label: 'Home', icon: <BsHouse /> },
-  { href: '/dashboard', label: 'Dashboard', icon: <MdOutlineDashboard /> },
+  {
+    href: '/dashboard',
+    label: 'Dashboard',
+    icon: <MdOutlineDashboard />,
+    requiresAuth: true,
+  },
   { href: '/about', label: 'About', icon: <BsInfoCircle /> },
   { href: '/contact', label: 'Contact', icon: <BsEnvelope /> },
   { href: '/pricing', label: 'Pricing', icon: <BsCreditCard /> },
@@ -32,6 +38,9 @@ export default function AppNavbar({
   authButtons?: ReactNode;
 }) {
   const pathname = usePathname();
+  const { data: session, isPending } = authClient.useSession();
+  const isLoggedIn = !!session?.user && !isPending;
+
   return (
     <Navbar
       expand={'lg'}
@@ -56,13 +65,15 @@ export default function AppNavbar({
             variant={'underline'}
             activeKey={pathname}
           >
-            {navLinks.map((link) => (
-              <Nav.Item key={link.href}>
-                <Nav.Link href={link.href} eventKey={link.href}>
-                  {link.icon} {link.label}
-                </Nav.Link>
-              </Nav.Item>
-            ))}
+            {navLinks
+              .filter((link) => !link.requiresAuth || isLoggedIn)
+              .map((link) => (
+                <Nav.Item key={link.href}>
+                  <Nav.Link href={link.href} eventKey={link.href}>
+                    {link.icon} {link.label}
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
           </Nav>
           {authButtons}
         </Navbar.Collapse>
