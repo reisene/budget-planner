@@ -9,6 +9,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import {
   BsCreditCard,
   BsEnvelope,
+  BsGear,
   BsHouse,
   BsInfoCircle,
 } from 'react-icons/bs';
@@ -26,6 +27,12 @@ const navLinks = [
     href: '/dashboard',
     label: 'Dashboard',
     icon: <MdOutlineDashboard />,
+    requiresAuth: true,
+  },
+  {
+    href: '/account/settings',
+    label: 'Settings',
+    icon: <BsGear />,
     requiresAuth: true,
   },
   { href: '/about', label: 'About', icon: <BsInfoCircle /> },
@@ -63,7 +70,13 @@ export default function AppNavbar({
           <Nav
             className='me-auto align-items-center'
             variant={'underline'}
-            activeKey={pathname}
+            activeKey={
+              pathname.startsWith('/dashboard')
+                ? '/dashboard'
+                : pathname === '/account/settings'
+                  ? '/account/settings'
+                  : pathname
+            }
           >
             {navLinks
               .filter((link) => !link.requiresAuth || isLoggedIn)

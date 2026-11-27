@@ -11,12 +11,12 @@ export const config: VercelConfig = {
   trailingSlash: false,
   framework: 'nextjs',
   installCommand: 'npm ci',
-  // crons: [
-  //   {
-  //     path: '/api/cron/contact-retention',
-  //     schedule: '0 3 * * *',
-  //   },
-  // ],
+  crons: [
+    {
+      path: '/api/cron/recurring-payments',
+      schedule: '0 0 * * *',
+    },
+  ],
   git: {
     deploymentEnabled: {
       'experiment/*': false,
