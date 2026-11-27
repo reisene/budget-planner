@@ -2,6 +2,7 @@ import AppNavbar from '@/components/AppNavbar';
 import AuthButtons from '@/components/AuthButtons';
 import Footer from '@/components/Footer';
 import pkg from '@/package.json';
+import '@/styles/theme.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +20,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   colorScheme: 'dark',
-  themeColor: '#212529',
+  themeColor: '#101b19',
 };
 
 export const metadata: Metadata = {
@@ -83,8 +84,7 @@ export default function RootLayout({
       <body className={`min-vh-100 d-flex flex-column ${montserrat.className}`}>
         <a
           href='#main-content'
-          className='visually-hidden-focusable position-absolute m-2 p-2 bg-body'
-          style={{ zIndex: 2000 }}
+          className='visually-hidden-focusable position-absolute m-2 p-2 bg-body skip-link'
         >
           Skip to main content
         </a>

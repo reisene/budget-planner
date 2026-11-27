@@ -30,11 +30,7 @@ export default function AuthButtons() {
 
   if (isPending) {
     return (
-      <div
-        className='d-flex gap-2'
-        aria-busy='true'
-        style={{ minHeight: 38 }}
-      />
+      <div className='d-flex gap-2 auth-actions-placeholder' aria-busy='true' />
     );
   }
 

@@ -52,11 +52,14 @@ export default async function HomePage() {
 
   return (
     <Container>
-      <section className='text-center py-5' aria-labelledby='hero-title'>
+      <section
+        className='text-center py-5 budget-hero'
+        aria-labelledby='hero-title'
+      >
         <h1 id='hero-title' className='display-4 fw-bold'>
           Plan your money, simply
         </h1>
-        <p className='lead mx-auto my-4' style={{ maxWidth: '40rem' }}>
+        <p className='lead mx-auto my-4 budget-hero__copy'>
           Budget Planner helps you track income and expenses, organise them into
           categories and stay in control of your finances.
         </p>

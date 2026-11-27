@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'A simple budget planner app.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#212529',
-    theme_color: '#212529',
+    background_color: '#101b19',
+    theme_color: '#101b19',
     icons: [
       {
         src: '/android-chrome-192x192.png',

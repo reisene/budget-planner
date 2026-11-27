@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Login' };
 
 export default function LoginPage() {
   return (
-    <Container style={{ maxWidth: 420 }}>
+    <Container className='auth-container'>
       <h1 className='h3 mb-4 text-center'>Login</h1>
       <LoginForm />
     </Container>

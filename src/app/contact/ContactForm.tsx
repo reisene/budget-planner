@@ -62,7 +62,7 @@ function ContactFormContent({
         Fields marked <span aria-hidden='true'>*</span>
         <span className='visually-hidden'>with an asterisk</span> are required.
       </p>
-      <div style={{ display: 'none' }} aria-hidden='true'>
+      <div className='contact-honeypot' aria-hidden='true'>
         <label htmlFor='hp_website'>Website</label>
         <input
           id='hp_website'
